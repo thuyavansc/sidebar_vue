@@ -1,7 +1,10 @@
 <template>
   <div class="relative flex min-h-screen">
     <!-- Sidebar -->
-    <div class="bg-cyan-600 text-cyan-100 w-64 space-y-6 px-2 py-4">
+    <div
+      class="bg-cyan-600 text-cyan-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 md:relative md:-translate-x-0 trasform -translate-x-full transition duration-200 ease-in-out"
+      :class="{ 'relative -translate-x-0': showSidebar }"
+    >
       <a href="#" class="flex items-center space-x-2 px-4 py-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +108,27 @@
     <!-- Main content -->
     <div class="flex-1">
       <!-- header -->
-      <div class="bg-white shadow px-2 py-2">Header</div>
+      <div class="bg-white shadow px-2 py-2">
+        <button
+          @click="showSidebar = !showSidebar"
+          class="text-cyan-600 font-extrabold"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
+      </div>
       <!-- content -->
       <div class="p-8 text-cyan-700 font-extrabold">Content</div>
     </div>
@@ -114,7 +137,16 @@
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+export default {
+  setup() {
+    const showSidebar = ref(false);
+
+    return {
+      showSidebar,
+    };
+  },
+};
 </script>
 
 <style></style>
